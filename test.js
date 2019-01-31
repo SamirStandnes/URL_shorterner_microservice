@@ -1,9 +1,10 @@
 const express = require('express');
+const router = express.Router();
 const mongoose = require('mongoose');
 const mongo = require('mongodb');
 
-const router = express.Router();
 const server = require("./server");
+
 //const Url = server.Url; remember! 'testing is not defined' error when importing same same at same same time :-)
 
 router.get('/test/:number', function (req, res, next) {

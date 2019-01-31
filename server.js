@@ -46,8 +46,9 @@ app.get('/', function (req, res) {
 });
 
 const urlFormatValidator = require('./urlFormatValidator');
+//const dnsUrlLookup = require('dnsUrlLookup');
 
-app.post('/api/shorturl/new', urlFormatValidator());
+app.use(urlFormatValidator);
 
 
 app.listen(port);
