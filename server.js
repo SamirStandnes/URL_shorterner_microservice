@@ -46,9 +46,10 @@ app.get('/', function (req, res) {
 });
 
 const urlFormatValidator = require('./urlFormatValidator');
-//const dnsUrlLookup = require('dnsUrlLookup');
+const dnsUrlLookup = require('./dnsUrlLookup');
 
-app.use(urlFormatValidator);
+
+app.use(dnsUrlLookup);
 
 
 app.listen(port);
