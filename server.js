@@ -1,8 +1,9 @@
+'use strict'
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-exports.app = app;
 
 // mongodb and mongoose
 const mongo = require('mongodb');
@@ -17,7 +18,7 @@ const test = require('./test');
 const port = process.env.PORT || 8080;
 
 //connect to db
-const mongoURL = 'mongodb://database_two:Database_two_password2@ds157844.mlab.com:57844/database_two';
+const mongoURL = process.env.MONGOLAB_URI;
 mongoose.connect(mongoURL, {useNewUrlParser: true} );
 console.log('just to confirm, here is my mongoURL  ***' + mongoURL + '***');
 
@@ -46,10 +47,9 @@ app.get('/', function (req, res) {
 });
 
 const urlFormatValidator = require('./urlFormatValidator');
-const dnsUrlLookup = require('./dnsUrlLookup');
+const dnsUrlLookup = require('./dnsUrlLookup')();
 
-
-app.use(dnsUrlLookup);
+app.use(urlFormatValidator, dnsUrlLookup);
 
 
 app.listen(port);
