@@ -1,5 +1,4 @@
 'use strict'
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -13,6 +12,7 @@ const greeting = require('./greeting');
 const test = require('./test');
 
 app.use(bodyParser.urlencoded({extended: false}));
+
 //tests
 app.use(greeting);
 app.use(test);
@@ -24,12 +24,12 @@ app.get('/', function (req, res) {
 
 const urlValidator = require('./urlValidator')();
 const dbLookup = require('./dbLookup')();
+const createNewDocument = require('./createNewDocument')();
 
 console.log(dbLookup);
 console.log(urlValidator);
 
-app.post('/api/shorturl/new', urlValidator, dbLookup);
-
+app.post('/api/shorturl/new', urlValidator, dbLookup, createNewDocument);
 
 app.listen(port);
 console.log('Magic happens on port ' + port);
