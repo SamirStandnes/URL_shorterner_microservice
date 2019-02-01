@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 //connect to db
 const mongoURL = process.env.MONGOLAB_URI;
 mongoose.connect(mongoURL, {useNewUrlParser: true} );
-console.log('just to confirm, here is my mongoURL  ***' + mongoURL + '***');
+console.log('just to confirm, here is my mongoURL  ***' + "hidden Mongo db url" + '***');
 
 //define db model
 const Schema = mongoose.Schema;
