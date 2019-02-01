@@ -22,10 +22,13 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-const urlValidator = require('./urlValidator');
-//const dnsUrlLookup = require('./dnsUrlLookup')();
+const urlValidator = require('./urlValidator')();
+const dbLookup = require('./dbLookup')();
 
-app.use(urlValidator);
+console.log(dbLookup);
+console.log(urlValidator);
+
+app.post('/api/shorturl/new', urlValidator, dbLookup);
 
 
 app.listen(port);
