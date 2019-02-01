@@ -1,42 +1,17 @@
 'use strict'
-require('dotenv').config()
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 
-// mongodb and mongoose
-const mongo = require('mongodb');
-const mongoose = require('mongoose');
-
+// Basic config
+const port = process.env.PORT || 8080;
 // test modules
 const greeting = require('./greeting');
 const test = require('./test');
 
-
-// Basic config
-const port = process.env.PORT || 8080;
-
-//connect to db
-const mongoURL = process.env.MONGOLAB_URI;
-mongoose.connect(mongoURL, {useNewUrlParser: true} );
-console.log('just to confirm, here is my mongoURL  ***' + mongoURL + '***');
-
 app.use(bodyParser.urlencoded({extended: false}));
-
-//define db model
-const Schema = mongoose.Schema;
-
-const urlSchema = new Schema({
-  original_url: String,
-  shorter_url: Number,
-});
-
-// init db model
-const Url = mongoose.model('Url', urlSchema);
-//export model
-module.exports.Url = Url;
-
 //tests
 app.use(greeting);
 app.use(test);
