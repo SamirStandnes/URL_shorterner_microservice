@@ -13,9 +13,9 @@ const createNewDocument = () => {
     
     newUrl.save(function(err, data) {
       if(err) {
-        throw err;
-      }
-       res.json({  
+        throw 'could not save the URL';
+      } 
+      res.json({  
          original_url: req.url,
          shorter_url: number + 1
        }); 

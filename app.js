@@ -22,14 +22,14 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-const urlValidator = require('./urlValidator')();
-const dbLookup = require('./dbLookup')();
-const createNewDocument = require('./createNewDocument')();
+const redirect = require('./redirect');
+const shortenUrl = require('./shortenUrl');
 
-console.log(dbLookup);
-console.log(urlValidator);
+// Mount post middleware
+app.use(shortenUrl);
 
-app.post('/api/shorturl/new', urlValidator, dbLookup, createNewDocument);
+// Mount get middleware
+app.use(redirect);
 
 app.listen(port);
 console.log('Magic happens on port ' + port);
