@@ -7,6 +7,7 @@ const app = express();
 
 // Basic config
 const port = process.env.PORT || 8080;
+
 // test modules
 const greeting = require('./greeting');
 const test = require('./test');
@@ -21,10 +22,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-const urlFormatValidator = require('./urlFormatValidator');
-const dnsUrlLookup = require('./dnsUrlLookup')();
+const urlValidator = require('./urlValidator');
+//const dnsUrlLookup = require('./dnsUrlLookup')();
 
-app.use(urlFormatValidator, dnsUrlLookup);
+app.use(urlValidator);
 
 
 app.listen(port);
