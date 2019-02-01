@@ -1,5 +1,5 @@
 
-const db = require("./db");
+const db = require("../models/db");
 
 const dbLookup = () => { 
    return function (req, res, next) { 

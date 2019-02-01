@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./db');
+const db = require('../models/db');
 
 router.get('/api/shorturl/:number', (req, res, next) => {
     let num = parseInt(req.params.number); 

@@ -8,22 +8,22 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 // test modules
-const greeting = require('./greeting');
-const test = require('./test');
+const greeting = require('./tests/greeting');
+const test = require('./tests/test');
 
 app.use(bodyParser.urlencoded({extended: false}));
 
 //tests
-app.use(greeting);
-app.use(test);
+//app.use(greeting);
+//app.use(test);
 
 // index.html sendFile()
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
+  res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
-const redirect = require('./redirect');
-const shortenUrl = require('./shortenUrl');
+const redirect = require('./middleware/redirect');
+const shortenUrl = require('./middleware/shortenUrl');
 
 // Mount post middleware
 app.use(shortenUrl);
