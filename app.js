@@ -11,16 +11,19 @@ const port = process.env.PORT || 8080;
 const greeting = require('./tests/greeting');
 const test = require('./tests/test');
 
+//serve CSS file
+app.use(express.static(path.join(__dirname, 'public')));
+
+// index.html sendFile()
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
+
 app.use(bodyParser.urlencoded({extended: false}));
 
 //tests
 //app.use(greeting);
 //app.use(test);
-
-// index.html sendFile()
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/views/index.html'));
-});
 
 const redirect = require('./middleware/redirect');
 const shortenUrl = require('./middleware/shortenUrl');
