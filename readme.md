@@ -1,7 +1,7 @@
 ## URL shorterner microservice
 
 #### API microservice  
-You can POST a URL to [project_url]/api/shorturl/new and you will receive a shortened URL in the JSON response.
+You can POST a URL to url-shortener-microservice24-7.herokuapp.com/api/shorturl/new and you will receive a shortened URL in the JSON response.
 
   Example:    
 
